@@ -172,7 +172,7 @@ export const Home = (): JSX.Element => {
         in: '#20abe2',
         out: 'white',
         background: '#1A202A',
-      }
+      },
     })
 
     controller
@@ -182,17 +182,17 @@ export const Home = (): JSX.Element => {
       .adjustOceanBrightness(0.8)
       .disableUnmentioned(true)
       .setAutoRotation(true, 1)
-    
+
     controller.init()
   }, [])
 
   return (
     <div className={classes.root}>
       <header>
-        <AppBar position="relative">
+        <AppBar position='relative'>
           <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
-              {"a takaki miyajima"}
+            <Typography variant='h6' color='inherit' noWrap>
+              {'a takaki miyajima'}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -203,10 +203,7 @@ export const Home = (): JSX.Element => {
       </main>
 
       <footer className={classes.footer}>
-        <a
-          href="#"
-          rel="noopener noreferrer"
-        >
+        <a href='#' rel='noopener noreferrer'>
           Powered by{'Takaki Miyajima'}
         </a>
       </footer>

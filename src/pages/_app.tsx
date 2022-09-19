@@ -20,7 +20,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <>
       <Head>
         <title>A takaki miyajima</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
