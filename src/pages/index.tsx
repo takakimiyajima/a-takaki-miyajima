@@ -12,10 +12,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     minHeight: '100vh',
   },
-  // main: {
-  //   marginTop: theme.spacing(8),
-  //   marginBottom: theme.spacing(2),
-  // },
   footer: {
     padding: theme.spacing(3, 2),
     marginTop: 'auto',
@@ -112,12 +108,12 @@ const data = [
     v: 1000000,
   },
   {
-    e: 'JP',
+    e: 'US',
     i: 'PE',
     v: 1000000,
   },
   {
-    e: 'JP',
+    e: 'PE',
     i: 'BO',
     v: 1000000,
   },
@@ -151,6 +147,16 @@ const data = [
     i: 'AI',
     v: 1000000,
   },
+  {
+    e: 'US',
+    i: 'CA',
+    v: 1000000,
+  },
+  {
+    e: 'CA',
+    i: 'US',
+    v: 1000000,
+  },
 ]
 
 export const Home = (): JSX.Element => {
@@ -162,14 +168,21 @@ export const Home = (): JSX.Element => {
       control: {
         initCountry: 'JP',
       },
+      color: {
+        in: '#20abe2',
+        out: 'white',
+        background: '#1A202A',
+      }
     })
 
-    controller.addData(data)
-    controller.lightenMentioned(true)
-    controller.adjustMentionedBrightness(0.8)
-    controller.setAutoRotation(true, 0.8)
-    controller.adjustOceanBrightness(0.8)
-
+    controller
+      .addData(data)
+      .lightenMentioned(true)
+      .adjustMentionedBrightness(0.8)
+      .adjustOceanBrightness(0.8)
+      .disableUnmentioned(true)
+      .setAutoRotation(true, 1)
+    
     controller.init()
   }, [])
 
