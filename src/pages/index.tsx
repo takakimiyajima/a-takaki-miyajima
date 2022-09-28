@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     minHeight: '100vh',
   },
+  header: {
+    opacity: 0.9,
+  },
   footer: {
     padding: theme.spacing(3, 2),
     marginTop: 'auto',
@@ -30,12 +33,12 @@ export default function Home(): JSX.Element {
   useEffect(() => {
     const controller = new GIO.Controller(ref?.current, {
       control: {
-        initCountry: 'JP',
+        initCountry: 'CA',
       },
       color: {
         in: '#20abe2',
         out: 'white',
-        background: '#1A202A',
+        background: 'black',
       },
     })
 
@@ -53,17 +56,17 @@ export default function Home(): JSX.Element {
   return (
     <div className={classes.root}>
       <header>
-        <AppBar position='relative'>
+        <AppBar position='relative' className={classes.header}>
           <Toolbar>
             <Typography variant='h6' color='inherit' noWrap>
-              {'a takaki miyajima'}
+              {'A Takaki Miyajima'}
             </Typography>
           </Toolbar>
         </AppBar>
       </header>
 
       <main className={classes.root}>
-        <div style={{ width: 1440, height: 800 }} ref={ref} />
+        <div style={{ width: 1440, height: 800, position: 'fixed' }} ref={ref} />
       </main>
 
       <footer className={classes.footer}>
