@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react'
+import * as GIO from 'giojs'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
-import * as GIO from 'giojs'
+import { useGioContext } from '@/hooks/gio'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,150 +21,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const data = [
-  {
-    e: 'JP',
-    i: 'CA',
-    v: 5000000,
-  },
-  {
-    e: 'JP',
-    i: 'TW',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'TH',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'KR',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'CN',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'KR',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'IT',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'ID',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'AU',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'HR',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'ES',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'LK',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'SK',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'SI',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'PW',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'HU',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'PH',
-    v: 1000000,
-  },
-  {
-    e: 'US',
-    i: 'PE',
-    v: 1000000,
-  },
-  {
-    e: 'PE',
-    i: 'BO',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'PT',
-    v: 1000000,
-  },
-  // {
-  //   e: 'JP',
-  //   i: 'FM',
-  //   v: 1000000,
-  // },
-  {
-    e: 'JP',
-    i: 'VA',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'MA',
-    v: 1000000,
-  },
-  {
-    e: 'JP',
-    i: 'US',
-    v: 1000000,
-  },
-  {
-    e: 'US',
-    i: 'AI',
-    v: 1000000,
-  },
-  {
-    e: 'US',
-    i: 'CA',
-    v: 1000000,
-  },
-  {
-    e: 'CA',
-    i: 'US',
-    v: 1000000,
-  },
-]
-
-export const Home = (): JSX.Element => {
+export default function Home(): JSX.Element {
   const classes = useStyles()
   const ref = useRef(null)
 
+  const gioContext = useGioContext()
+
   useEffect(() => {
-    const controller = new GIO.Controller(ref.current, {
+    const controller = new GIO.Controller(ref?.current, {
       control: {
         initCountry: 'JP',
       },
@@ -176,7 +40,7 @@ export const Home = (): JSX.Element => {
     })
 
     controller
-      .addData(data)
+      .addData(gioContext.gio)
       .lightenMentioned(true)
       .adjustMentionedBrightness(0.8)
       .adjustOceanBrightness(0.8)
@@ -184,7 +48,7 @@ export const Home = (): JSX.Element => {
       .setAutoRotation(true, 1)
 
     controller.init()
-  }, [])
+  }, [gioContext.gio])
 
   return (
     <div className={classes.root}>
@@ -211,4 +75,13 @@ export const Home = (): JSX.Element => {
   )
 }
 
-export default Home
+// export const getStaticProps: GetStaticProps = () => {
+//   console.log('test---')
+//   const gioContext = useGioContext()
+
+//   return {
+//     props: {
+//       gioContext,
+//     },
+//   }
+// }

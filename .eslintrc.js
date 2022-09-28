@@ -23,7 +23,6 @@ module.exports = {
     'prettier/prettier': 'error',
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-unnecessary-type-constraint': 'off',
-    '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
   },
   ignorePatterns: ['node_modules', '**/dist/**/*', 'build'],
 }
