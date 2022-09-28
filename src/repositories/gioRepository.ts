@@ -22,6 +22,7 @@ export class GioRepository {
   async fetchGio(): Promise<Gio[]> {
     const response = await client.getList<MasterGio>({
       endpoint: ENDPOINT,
+      queries: { limit: 200 },
     })
 
     return this.getMappedGio(response)

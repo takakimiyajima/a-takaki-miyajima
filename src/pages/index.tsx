@@ -74,14 +74,3 @@ export default function Home(): JSX.Element {
     </div>
   )
 }
-
-// export const getStaticProps: GetStaticProps = () => {
-//   console.log('test---')
-//   const gioContext = useGioContext()
-
-//   return {
-//     props: {
-//       gioContext,
-//     },
-//   }
-// }
