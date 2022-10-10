@@ -32,7 +32,7 @@ export default function Home(): JSX.Element {
 
   return (
     <>
-      <Box sx={{ width: 1440, height: 800, position: 'fixed', pt: 8 }} ref={ref} />
+      <Box sx={{ width: 1440, height: 800, pt: 8 }} ref={ref} />
 
       <footer>
         <a href='#' rel='noopener noreferrer'>

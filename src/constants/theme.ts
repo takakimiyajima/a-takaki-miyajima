@@ -6,7 +6,7 @@ export const theme = createTheme({
       primary: '#FFFFFF',
     },
     common: {
-      black: '#FFFFFF',
+      black: '#000000',
       white: '#FFFFFF',
     },
     primary: {

@@ -69,7 +69,7 @@ export const AppBar = (props: Props) => {
 
   return (
     <header>
-      <BaseAppBar>
+      <BaseAppBar sx={{ opacity: 0.9 }}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography variant='h6'>A Takaki Miyajima</Typography>
           <Box>
