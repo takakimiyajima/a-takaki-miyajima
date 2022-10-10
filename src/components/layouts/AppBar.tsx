@@ -22,6 +22,10 @@ const navItems = [
     to: '/',
   },
   {
+    label: 'Works',
+    to: '/works',
+  },
+  {
     label: 'Blogs',
     to: '/blogs',
   },
