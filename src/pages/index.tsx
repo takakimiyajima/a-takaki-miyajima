@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import * as GIO from 'giojs'
-import { AppBar } from '@/components/layouts'
 import { useGioContext } from '@/hooks/gio'
+import { Box } from '@mui/material'
 
 export default function Home(): JSX.Element {
   const ref = useRef(null)
@@ -31,18 +31,14 @@ export default function Home(): JSX.Element {
   }, [gio])
 
   return (
-    <div>
-      <AppBar />
-
-      <main>
-        <div style={{ width: 1440, height: 800, position: 'fixed' }} ref={ref} />
-      </main>
+    <>
+      <Box sx={{ width: 1440, height: 800, position: 'fixed', pt: 8 }} ref={ref} />
 
       <footer>
         <a href='#' rel='noopener noreferrer'>
           Powered by{'Takaki Miyajima'}
         </a>
       </footer>
-    </div>
+    </>
   )
 }

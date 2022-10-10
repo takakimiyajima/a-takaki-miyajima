@@ -7,6 +7,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { GioContextProvider } from '@/hooks/gio'
 import { theme } from '@/constants/theme'
+import { AppBar } from '@/components/layouts'
 
 const queryClient = new QueryClient()
 
@@ -28,6 +29,7 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
           <CssBaseline />
+          <AppBar />
           {router.pathname === '/' ? (
             <GioContextProvider>
               <Component {...pageProps} />
