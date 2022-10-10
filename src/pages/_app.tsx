@@ -3,15 +3,14 @@ import Head from 'next/head'
 import '@/styles/globals.css'
 import '@/styles/destyle.css'
 import type { AppProps } from 'next/app'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { ThemeProvider } from '@material-ui/core/styles'
+import { CssBaseline, ThemeProvider } from '@material-ui/core'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { GioContextProvider } from '@/hooks/gio'
 import { theme } from '@/constants/theme'
 
 const queryClient = new QueryClient()
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, pageProps, router }: AppProps) => {
   useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side')
@@ -29,16 +28,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
           <CssBaseline />
-          <GioContextProvider>
-            <Component {...pageProps} />
-          </GioContextProvider>
-          {/* {router.pathname === '/' ? (
+          {router.pathname === '/' ? (
             <GioContextProvider>
               <Component {...pageProps} />
             </GioContextProvider>
           ) : (
             <Component {...pageProps} />
-          )} */}
+          )}
         </QueryClientProvider>
       </ThemeProvider>
     </>
