@@ -69,36 +69,34 @@ export const AppBar = (props: Props) => {
 
   return (
     <header>
-      <Box>
-        <BaseAppBar position='static'>
-          <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant='h6'>A Takaki Miyajima</Typography>
-            <Box>
-              {navItems.map(({ label, to }, index) => (
-                <Button
-                  key={`${label}-${index}`}
-                  sx={{ color: 'text.primary' }}
-                  onClick={() => handleClick(to)}
-                >
-                  {label}
-                </Button>
-              ))}
-            </Box>
-          </Toolbar>
-        </BaseAppBar>
-        <Box component='nav'>
-          <Drawer
-            container={container}
-            variant='temporary'
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true,
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Box>
+      <BaseAppBar>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Typography variant='h6'>A Takaki Miyajima</Typography>
+          <Box>
+            {navItems.map(({ label, to }, index) => (
+              <Button
+                key={`${label}-${index}`}
+                sx={{ color: 'text.primary' }}
+                onClick={() => handleClick(to)}
+              >
+                {label}
+              </Button>
+            ))}
+          </Box>
+        </Toolbar>
+      </BaseAppBar>
+      <Box component='nav'>
+        <Drawer
+          container={container}
+          variant='temporary'
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true,
+          }}
+        >
+          {drawer}
+        </Drawer>
       </Box>
     </header>
   )
