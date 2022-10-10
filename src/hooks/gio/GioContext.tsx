@@ -1,5 +1,6 @@
 import { createContext, useState, ReactNode, FC } from 'react'
 import { useQuery } from 'react-query'
+import { Spinner } from '@/components/common'
 import { GioRepository, Gio } from '@/repositories/gioRepository'
 
 export type Context = {
@@ -35,7 +36,7 @@ export const GioContextProvider: FC<GioContextProviderProps> = ({ children }) =>
   }
 
   if (isLoading) {
-    return <div>Loading......</div>
+    return <Spinner />
   }
 
   return <GioContext.Provider value={value}>{children}</GioContext.Provider>
