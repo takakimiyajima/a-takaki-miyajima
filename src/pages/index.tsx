@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import * as GIO from 'giojs'
 import { useGioContext } from '@/hooks/gio'
-import { Box } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 
 export default function Home(): JSX.Element {
   const ref = useRef(null)
@@ -32,7 +32,15 @@ export default function Home(): JSX.Element {
 
   return (
     <>
-      <Box sx={{ width: 1440, height: 800, pt: 8 }} ref={ref} />
+      <Grid
+        container
+        alignItems='center'
+        justifyContent='center'
+        direction='column'
+        sx={{ mt: 10 }}
+      >
+        <Box sx={{ width: 1440, height: 800, pt: 8 }} ref={ref} />
+      </Grid>
 
       <footer>
         <a href='#' rel='noopener noreferrer'>
