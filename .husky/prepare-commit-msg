@@ -1,0 +1,57 @@
+#!/bin/sh
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+
+# Only run for normal commits or template commits (skip merge, squash, amend, etc.)
+if [ -n "$COMMIT_SOURCE" ] && [ "$COMMIT_SOURCE" != "template" ]; then
+  exit 0
+fi
+
+# Check if Ollama is reachable
+if ! curl -s --max-time 2 http://localhost:11434/api/tags >/dev/null 2>&1; then
+  echo "⚠ Ollama is not running. Skipping auto commit message."
+  exit 0
+fi
+
+# Check jq
+if ! command -v jq >/dev/null 2>&1; then
+  echo "⚠ jq is not installed. Skipping auto commit message."
+  exit 0
+fi
+
+# Get staged diff (truncate to avoid overwhelming the model)
+DIFF=$(git diff --cached --stat)
+DIFF_DETAIL=$(git diff --cached | head -200)
+
+if [ -z "$DIFF" ]; then
+  exit 0
+fi
+
+echo "🤖 Generating commit message with Ollama..."
+
+# Build JSON payload with system + user messages
+PAYLOAD=$(jq -n \
+  --arg sys "You are a git commit message generator. Given a diff, output ONLY a single-line commit message in the Conventional Commits format (e.g. feat: ..., fix: ..., chore: ..., refactor: ..., style: ..., docs: ...). No explanation, no quotes, no markdown, just the message." \
+  --arg diff "$DIFF" \
+  --arg detail "$DIFF_DETAIL" \
+  '{
+    model: "llama3",
+    messages: [
+      {role: "system", content: $sys},
+      {role: "user", content: ("Files changed:\n" + $diff + "\n\nDiff detail:\n" + $detail)}
+    ],
+    stream: false
+  }')
+
+RESPONSE=$(curl -s --max-time 30 http://localhost:11434/api/chat -d "$PAYLOAD")
+MSG=$(echo "$RESPONSE" | jq -r '.message.content // empty')
+
+if [ -n "$MSG" ]; then
+  # Write the generated message, preserving any existing content (like comments)
+  EXISTING=$(cat "$COMMIT_MSG_FILE")
+  printf '%s\n%s' "$MSG" "$EXISTING" > "$COMMIT_MSG_FILE"
+  echo "✅ Commit message generated: $MSG"
+else
+  echo "⚠ Failed to generate commit message. Continuing with empty message."
+fi
