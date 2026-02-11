@@ -67,18 +67,26 @@ onMounted(() => {
 </template>
 
 <style scoped>
+@font-face {
+  font-family: 'MySignatureFont';
+  src: url('/fonts/SlightlyCursiveCharacters-Rg.woff2') format('woff2');
+}
+
 .drag-area {
   user-select: none;
   width: 100%;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   padding: 1rem;
 }
 .drag-handle {
+  font-family: 'MySignatureFont', cursive;
+  color: black;
+  white-space: nowrap;
   cursor: grab;
   display: inline-block;
-  font-size: 1.25rem;
+  font-size: 5rem;
   font-weight: bold;
   /* pointer-events を無効にせずにドラッグを許可 */
   pointer-events: auto;  /* デフォルト */
