@@ -91,4 +91,15 @@ onMounted(() => {
   /* pointer-events を無効にせずにドラッグを許可 */
   pointer-events: auto;  /* デフォルト */
 }
+
+@media (max-width: 768px) {
+  .drag-handle {
+    font-size: 15vw; /* ビューポート幅に基づいたサイズに変更 */
+    white-space: normal; /* 折り返しを許可 */
+    text-align: center;
+    word-break: break-word; /* 長い単語も折り返す */
+    max-width: 100%;
+    line-height: 1.2;
+  }
+}
 </style>
